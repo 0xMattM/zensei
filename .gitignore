@@ -1,0 +1,48 @@
+# Environment files
+.env
+.env.local
+.env.production
+.env.development
+
+# Docker volumes and data
+data/
+volumes/
+logs/
+
+# Cloudflared credentials and certificates
+.cloudflared/
+tunnel-config.yml
+cert.pem
+*.pem
+
+# Temporary files
+*.tmp
+*.log
+*.pid
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node modules (if any local development)
+node_modules/
+
+# Backup files
+*.bak
+*.backup
+*~ 
+
+# Next.js
+.next/
