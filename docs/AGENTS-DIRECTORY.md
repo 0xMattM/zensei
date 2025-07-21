@@ -2,7 +2,7 @@
 
 Meet ZenSei's team of 9 specialized AI agents, each with unique personalities and expertise designed to make your DeFi journey effortless and enjoyable.
 
-## 🧘 Zen Master (Cordinator Agent)
+## 🧘 Zen Master (Coordinator Agent)
 *The heart and soul of ZenSei*
 
 **Personality**: Wise, calm, and coordinating. Acts as the central conductor of the agent orchestra.
