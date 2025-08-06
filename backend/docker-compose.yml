@@ -1,0 +1,127 @@
+# Zensei Multi-Agent System
+# Simplified Docker Compose setup for Eliza, Cambrian Agent, and SEI MCP Server
+# Usage: docker-compose up -d
+name: zensei
+volumes:
+  # Application volumes
+  eliza_storage:
+  cambrian_storage:
+  sei_mcp_storage:
+
+networks:
+  zensei_network:
+    driver: bridge
+
+services:
+  # Eliza Agent Service
+  eliza:
+    image: 0xmattt/zensei-eliza:latest
+    container_name: zensei-eliza
+    command: bun run start
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - GOOGLE_GENERATIVE_AI_API_KEY=${GOOGLE_GENERATIVE_AI_API_KEY}
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+      - SERVER_PORT=3000
+      - SERVER_HOST=0.0.0.0
+      - NODE_ENV=${NODE_ENV:-production}
+      - ELIZA_UI_ENABLE=${ELIZA_UI_ENABLE:-true}
+      - EXPRESS_MAX_PAYLOAD=${EXPRESS_MAX_PAYLOAD:-50mb}
+      - PGLITE_DATA_DIR=/app/.eliza/.elizadb
+      - EVM_CHAINS=${EVM_CHAINS}
+      - BIRDEYE_API_KEY=${BIRDEYE_API_KEY}
+      - DISCORD_APPLICATION_ID=${DISCORD_APPLICATION_ID}
+      - DISCORD_API_TOKEN=${DISCORD_API_TOKEN}
+      - SEI_PRIVATE_KEY=${SEI_PRIVATE_KEY}
+      - PRIVATE_KEY=${SEI_PRIVATE_KEY}
+      - RPC_URL=${RPC_URL:-https://evm-rpc.sei-apis.com}
+      - OLLAMA_API_ENDPOINT=${OLLAMA_BASE_URL:-http://ollama:11434}
+      - OLLAMA_SMALL_MODEL=${OLLAMA_SMALL_MODEL}
+      - OLLAMA_MEDIUM_MODEL=${OLLAMA_MEDIUM_MODEL}
+      - OLLAMA_LARGE_MODEL=${OLLAMA_LARGE_MODEL}
+      - OLLAMA_EMBEDDING_MODEL=${OLLAMA_EMBEDDING_MODEL}
+      - OLLAMA_MODEL=${OLLAMA_MODEL:-llama3.2:3b}
+      - REMOTE_CHARACTER_URLS=${REMOTE_CHARACTER_URLS}
+      - ELIZA_NONINTERACTIVE=${ELIZA_NONINTERACTIVE:-false}
+      - IGNORE_BOOTSTRAP=${IGNORE_BOOTSTRAP:-false}
+      - ELIZA_SERVER_AUTH_TOKEN=${ELIZA_SERVER_AUTH_TOKEN:-}
+    volumes:
+      - eliza_storage:/app/.eliza
+      - ./.env:/app/.env:ro
+    ports:
+      - "${ELIZA_PORT:-3010}:3000"
+    networks:
+      - zensei_network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # Cambrian Agent Service
+  cambrian-agent:
+    image: 0xmattt/zensei-agent:latest
+    container_name: zensei-agent
+    restart: unless-stopped
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - GOOGLE_GENERATIVE_AI_API_KEY=${GOOGLE_GENERATIVE_AI_API_KEY}
+      - SEI_PRIVATE_KEY=${SEI_PRIVATE_KEY}
+      - RPC_URL=${RPC_URL:-https://evm-rpc.sei-apis.com}
+    volumes:
+      - cambrian_storage:/app/.cambrian
+    ports:
+      - "${CAMBRIAN_AGENT_PORT:-3004}:9000"
+    networks:
+      - zensei_network
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:9000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # SEI MCP Server
+  sei-mcp-server:
+    image: 0xmattt/zensei-mcp-server:latest
+    container_name: zensei-sei-mcp-server
+    restart: unless-stopped
+    environment:
+      - MCP_SERVER_PORT=${MCP_SERVER_PORT:-3333}
+      - PRIVATE_KEY=${SEI_PRIVATE_KEY}
+      - SEI_PRIVATE_KEY=${SEI_PRIVATE_KEY}
+      - RPC_URL=${RPC_URL:-https://evm-rpc.sei-apis.com}
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+      - DEBUG=${DEBUG:-false}
+      - ENVIRONMENT=${ENVIRONMENT:-development}
+    ports:
+      - "${MCP_SERVER_PORT:-3333}:${MCP_SERVER_PORT:-3333}"
+    volumes:
+      - sei_mcp_storage:/app/.sei-mcp
+    networks:
+      - zensei_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:${MCP_SERVER_PORT:-3333}/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Cloudflared Tunnel (Optional - for web access)
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: zensei-cloudflared
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run --token ${CLOUDFLARED_TOKEN}
+    environment:
+      - TUNNEL_TOKEN=${CLOUDFLARED_TOKEN}
+    networks:
+      - zensei_network
+    depends_on:
+      - eliza
+      - cambrian-agent
+      - sei-mcp-server
+    profiles:
+      - tunnel 
