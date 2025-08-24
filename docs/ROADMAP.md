@@ -1,12 +1,12 @@
 # Roadmap
 
-## Current Features
+## Current Features (Q1 2025)
 
 ### ✅ Core System
 - Multi-agent architecture with 9 specialized agents
 - Natural language chat interface
 - Web application with responsive design
-- Telegram bot integration
+- **Telegram bot integration** (currently active)
 
 ### ✅ Portfolio Management
 - Real-time balance tracking
@@ -23,7 +23,7 @@
 - Blockchain exploration and transaction lookup
 - AI-powered research and analysis
 
-## Phase 1: Enhanced Automation
+## Phase 1: Enhanced Automation (Q2 2025)
 
 ### Smart Strategies
 - Dollar Cost Averaging (DCA) automation
@@ -40,7 +40,7 @@
 - Advanced chart and analytics views
 - Custom dashboard configurations
 
-## Phase 2: Platform Expansion
+## Phase 2: Platform Expansion (Q3 2025)
 
 ### Multi-Platform Support
 - Discord bot integration
@@ -57,7 +57,7 @@
 - Community-driven protocol ratings
 - Social trading features
 
-## Phase 3: Cross-Chain & Advanced AI
+## Phase 3: Cross-Chain & Advanced AI (Q4 2025)
 
 ### Cross-Chain Operations
 - Bridge integration for asset transfers
@@ -74,7 +74,7 @@
 - Custom agent creation toolkit
 - Plugin system for community extensions
 
-## Phase 4: Enterprise & Institutional
+## Phase 4: Enterprise & Institutional (Q1 2026)
 
 ### Enterprise Features
 - Team portfolio management
@@ -91,7 +91,7 @@
 - Regional compliance features
 - Local payment method integration
 
-## Future Vision
+## Future Vision (2026+)
 
 ### Advanced Automation
 - Full autonomous portfolio management
@@ -101,6 +101,13 @@
 ### Ecosystem Growth
 - Integration with emerging Sei protocols
 - Support for new asset types and DeFi primitives
+- Cross-ecosystem protocol bridges
+
+### Performance Goals
+- **100,000+ active users** by end of 2025
+- **$100M+ total value managed** by Q4 2025
+- **50+ integrated protocols** across multiple chains
+- **<1 second average response time** for all operations
 
 ## Success Metrics
 

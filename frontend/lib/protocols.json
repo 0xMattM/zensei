@@ -1,0 +1,14 @@
+{
+    "protocols": [
+      { "name": "Yei Finance", "slug": "yei-finance" },
+      { "name": "Takara", "slug": "takara-lend" },
+      { "name": "Dragonswap", "slug": "dragon-swap-sei" },
+      { "name": "Citrex", "slug": "citrex-markets" },
+      { "name": "Silo Staking", "slug": "silostake" },
+      { "name": "Sailor", "slug": "sailor" },
+      { "name": "Yaka Finance", "slug": "yaka-finance" },
+      { "name": "Jellyverse", "slug": "jellyverse" },
+      { "name": "Synnax Protocol", "slug": "synnax-protocol" },
+      { "name": "Pit Finance", "slug": "pit-finance" }
+    ]
+  }

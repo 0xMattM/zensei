@@ -1,0 +1,58 @@
+{
+  "name": "zensei-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@privy-io/react-auth": "^1.0.0",
+    "@radix-ui/react-avatar": "^1.0.4",
+    "@radix-ui/react-dialog": "^1.0.5",
+    "@radix-ui/react-dropdown-menu": "^2.1.15",
+    "@radix-ui/react-scroll-area": "^1.0.5",
+    "@radix-ui/react-separator": "^1.0.3",
+    "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-tabs": "^1.0.4",
+    "@tailwindcss/typography": "^0.5.16",
+    "@types/react-syntax-highlighter": "^15.5.13",
+    "autoprefixer": "^10.4.16",
+    "caniuse-lite": "^1.0.30001727",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "lucide-react": "^0.460.0",
+    "next": "^15.4.1",
+    "postcss": "^8.4.32",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-markdown": "^10.1.0",
+    "react-syntax-highlighter": "^15.6.1",
+    "recharts": "^3.1.0",
+    "remark-gfm": "^4.0.1",
+    "tailwind-merge": "^2.6.0",
+    "tailwindcss": "^3.4.0",
+    "tailwindcss-animate": "^1.0.7",
+    "typescript": "^5.6.0",
+    "viem": "^2.21.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "^15.4.1",
+    "prettier": "^3.3.0",
+    "prettier-plugin-tailwindcss": "^0.6.0"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  }
+}

@@ -1,0 +1,411 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@layer base {
+  :root {
+    /* ZenSei Brand Color Palette */
+    --color-zen-50: 248 250 252;
+    --color-zen-100: 241 245 249;
+    --color-zen-200: 226 232 240;
+    --color-zen-300: 203 213 225;
+    --color-zen-400: 148 163 184;
+    --color-zen-500: 100 116 139;
+    --color-zen-600: 71 85 105;
+    --color-zen-700: 51 65 85;
+    --color-zen-800: 30 41 59;
+    --color-zen-900: 15 23 42;
+    
+    /* Primary Brand Colors from Brand Board */
+    --zen-primary: 124 58 237; /* #7C3AED - Primary Purple */
+    --zen-secondary: 6 182 212; /* #06B6D4 - Cyan */
+    --zen-accent: 5 150 105; /* #059669 - Green */
+    
+    /* Secondary Brand Colors */
+    --zen-purple-light: 139 92 246; /* #8B5CF6 */
+    --zen-cyan-light: 56 189 248; /* #38BDF8 */
+    --zen-green-light: 52 211 153; /* #34D399 */
+    
+    /* Neutral Colors from Brand Board */
+    --zen-neutral-white: 255 255 255; /* #FFFFFF */
+    --zen-neutral-gray: 248 250 252; /* #F8FAFC */
+    --zen-neutral-dark: 30 41 59; /* #1E293B */
+    
+    /* Enhanced font configuration */
+    --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    --font-display: var(--font-varela), ui-sans-serif, system-ui, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+    
+    /* shadcn/ui CSS variables - enhanced dark theme */
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 224 71.4% 4.1%;
+    --card-foreground: 210 40% 98%;
+    --popover: 224 71.4% 4.1%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 124 58 237;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 215 27.9% 16.9%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 215 27.9% 16.9%;
+    --muted-foreground: 217.9 10.6% 64.9%;
+    --accent: 215 27.9% 16.9%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 215 27.9% 16.9%;
+    --input: 215 27.9% 16.9%;
+    --ring: 124 58 237;
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1.2;
+  }
+
+  p, div, span {
+    line-height: 1.6;
+  }
+
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+    background: hsl(var(--muted));
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+  }
+
+  pre {
+    font-family: var(--font-mono);
+    background: hsl(var(--muted));
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    border: 1px solid hsl(var(--border));
+  }
+
+  pre code {
+    background: none;
+    padding: 0;
+  }
+}
+
+@layer components {
+  /* Force dark theme on main areas that might show white */
+  .chat-area, .portfolio-area, main, [role="main"], .main-content {
+    @apply bg-transparent text-foreground;
+  }
+  
+  /* Override any potential white backgrounds in React components */
+  [data-reactroot], #__next, [data-nextjs-scroll-focus-boundary] {
+    @apply bg-transparent;
+  }
+}
+
+@layer utilities {
+  /* Enhanced zen gradient utilities with brand colors */
+  .zen-gradient {
+    background: linear-gradient(135deg, rgb(124 58 237) 0%, rgb(6 182 212) 100%);
+  }
+  
+  .zen-gradient-reverse {
+    background: linear-gradient(135deg, rgb(6 182 212) 0%, rgb(124 58 237) 100%);
+  }
+  
+  .zen-text-gradient {
+    background: linear-gradient(135deg, rgb(124 58 237) 0%, rgb(6 182 212) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .zen-glow {
+    box-shadow: 0 0 20px rgba(124, 58, 237, 0.3);
+  }
+
+  .zen-border {
+    border-image: linear-gradient(135deg, rgb(124 58 237), rgb(6 182 212)) 1;
+  }
+
+  /* Typography utilities */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-sans {
+    font-family: var(--font-sans);
+  }
+
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+
+  /* Dark theme enforcement */
+  .dark-theme-enforced {
+    background-color: hsl(var(--background)) !important;
+    color: hsl(var(--foreground)) !important;
+  }
+}
+
+/* Enhanced custom scrollbar with brand colors */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, rgb(124 58 237), rgb(6 182 212));
+  border-radius: 4px;
+  border: 1px solid hsl(var(--border));
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, rgb(139 92 246), rgb(14 190 220));
+}
+
+::-webkit-scrollbar-corner {
+  background: hsl(var(--muted));
+}
+
+/* Enhanced animations */
+@keyframes pulse-zen {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pulse-zen {
+  animation: pulse-zen 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(124, 58, 237, 0.1),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+.fade-in-up {
+  animation: fade-in-up 0.6s ease-out forwards;
+}
+
+/* Glass morphism effect */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-card {
+  background: rgba(30, 41, 59, 0.8);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(100, 116, 139, 0.2);
+}
+
+/* Carousel animations */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scroll-reverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+}
+
+.animate-scroll-reverse {
+  animation: scroll-reverse 30s linear infinite;
+}
+
+/* Smooth animation pause on hover */
+.carousel-container:hover .animate-scroll,
+.carousel-container:hover .animate-scroll-reverse {
+  animation-play-state: paused;
+}
+
+/* Tooltip z-index fix */
+.tooltip-container {
+  position: relative;
+  z-index: 9999;
+}
+
+.tooltip-content {
+  position: fixed;
+  z-index: 10000;
+  pointer-events: none;
+}
+
+/* Custom border widths for tooltips */
+.border-l-6 {
+  border-left-width: 6px;
+}
+
+.border-r-6 {
+  border-right-width: 6px;
+}
+
+.border-t-6 {
+  border-top-width: 6px;
+}
+
+/* Radial gradient utility */
+.bg-gradient-radial {
+  background: radial-gradient(circle, var(--tw-gradient-stops));
+}
+
+/* Enhanced twinkle animation */
+@keyframes twinkle-enhanced {
+  0%, 100% { 
+    opacity: 0.2; 
+    transform: scale(0.8) rotate(0deg); 
+  }
+  25% { 
+    opacity: 0.8; 
+    transform: scale(1.2) rotate(90deg); 
+  }
+  50% { 
+    opacity: 1; 
+    transform: scale(1.4) rotate(180deg); 
+  }
+  75% { 
+    opacity: 0.6; 
+    transform: scale(1.1) rotate(270deg); 
+  }
+}
+
+.animate-twinkle-enhanced {
+  animation: twinkle-enhanced 3s ease-in-out infinite;
+} 
+
+/* Carousel transparency fade effect - improved */
+.carousel-opacity-fade {
+  mask: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 5%,
+    rgba(255, 255, 255, 0.4) 10%,
+    rgba(255, 255, 255, 0.6) 15%,
+    rgba(255, 255, 255, 0.8) 20%,
+    rgba(255, 255, 255, 1) 30%,
+    rgba(255, 255, 255, 1) 70%,
+    rgba(255, 255, 255, 0.8) 80%,
+    rgba(255, 255, 255, 0.6) 85%,
+    rgba(255, 255, 255, 0.4) 90%,
+    rgba(255, 255, 255, 0.2) 95%,
+    transparent 100%
+  );
+  -webkit-mask: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 5%,
+    rgba(255, 255, 255, 0.4) 10%,
+    rgba(255, 255, 255, 0.6) 15%,
+    rgba(255, 255, 255, 0.8) 20%,
+    rgba(255, 255, 255, 1) 30%,
+    rgba(255, 255, 255, 1) 70%,
+    rgba(255, 255, 255, 0.8) 80%,
+    rgba(255, 255, 255, 0.6) 85%,
+    rgba(255, 255, 255, 0.4) 90%,
+    rgba(255, 255, 255, 0.2) 95%,
+    transparent 100%
+  );
+}
+
+/* Even more subtle version */
+.carousel-fade-subtle {
+  mask: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 8%,
+    rgba(255, 255, 255, 0.6) 16%,
+    rgba(255, 255, 255, 0.85) 24%,
+    rgba(255, 255, 255, 1) 32%,
+    rgba(255, 255, 255, 1) 68%,
+    rgba(255, 255, 255, 0.85) 76%,
+    rgba(255, 255, 255, 0.6) 84%,
+    rgba(255, 255, 255, 0.3) 92%,
+    transparent 100%
+  );
+  -webkit-mask: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 8%,
+    rgba(255, 255, 255, 0.6) 16%,
+    rgba(255, 255, 255, 0.85) 24%,
+    rgba(255, 255, 255, 1) 32%,
+    rgba(255, 255, 255, 1) 68%,
+    rgba(255, 255, 255, 0.85) 76%,
+    rgba(255, 255, 255, 0.6) 84%,
+    rgba(255, 255, 255, 0.3) 92%,
+    transparent 100%
+  );
+} 
